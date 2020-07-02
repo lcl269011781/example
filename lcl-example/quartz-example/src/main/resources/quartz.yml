@@ -1,0 +1,30 @@
+org:
+  quartz:
+    # scheduler相关
+    scheduler:
+      # scheduler的实例名
+      instanceName: quartz-example
+      instanceId: AUTO
+    # 持久化相关
+    jobStore:
+      isClustered: true
+      class: org.quartz.impl.jdbcjobstore.JobStoreTX
+      driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+      # 表示数据库中相关表是QRTZ_开头的
+      tablePrefix: QRTZ_
+      useProperties: true
+      datasource: qzds
+        qzds:
+          driver: com.mysql.cj.jdbc.Driver
+          URL: jdbc:mysql://127.0.0.1:3306/quartz?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8
+          user: root
+          password: 123456
+          validateOnCheckout: true
+    # 线程池相关
+    threadPool:
+      class: org.quartz.simpl.SimpleThreadPool
+      # 线程数
+      threadCount: 30
+      # 线程优先级
+      threadPriority: 5
+      threadsInheritContextClassLoaderOfInitializingThread: true

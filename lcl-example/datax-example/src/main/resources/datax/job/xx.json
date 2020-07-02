@@ -1,0 +1,69 @@
+{
+  "job": {
+    "content": [
+      {
+        "reader": {
+          "name": "mysqlreader",
+          "parameter": {
+            "connection": [
+              {
+                "jdbcUrl": [
+                  "jdbc:mysql://127.0.0.1:3306/ego?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8"
+                ],
+                "querySql": [
+                  "SELECT id,title,sell_point,price,num,barcode,image,cid,status,created,updated FROM tb_item"
+                ]
+              }
+            ],
+            "password": "123456",
+            "username": "root"
+          }
+        },
+        "writer": {
+          "name": "mysqlwriter",
+          "parameter": {
+            "column": [
+              "id",
+              "title",
+              "sell_point",
+              "price",
+              "num",
+              "barcode",
+              "image",
+              "cid",
+              "status",
+              "created",
+              "updated"
+            ],
+            "connection": [
+              {
+                "jdbcUrl": "jdbc:mysql://127.0.0.1:3306/datax?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8",
+                "table": [
+                  "tb_item"
+                ]
+              }
+            ],
+            "password": "123456",
+            "preSql": [
+              "delete from tb_item"
+            ],
+            "username": "root",
+            "writeMode": "insert"
+          }
+        }
+      }
+    ],
+    "setting": {
+      "errorLimit": {
+        "percentage": 0.0,
+        "record": 0
+      },
+      "speed": {
+        "byte": 10485760,
+        "record": 10000,
+        "channel": 2,
+        "batchSize": 1024
+      }
+    }
+  }
+}

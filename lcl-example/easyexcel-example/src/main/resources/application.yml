@@ -1,0 +1,8 @@
+server:
+  port: 8081
+
+threadpool:
+  easyexcel:
+    corePoolSize: 10
+    maximumPoolSize: 30
+    queueSize: 150
