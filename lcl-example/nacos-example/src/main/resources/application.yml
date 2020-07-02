@@ -1,0 +1,8 @@
+#config:
+#  info: 123
+
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: '*'

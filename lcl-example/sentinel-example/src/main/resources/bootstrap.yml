@@ -1,0 +1,45 @@
+server:
+  port: 8088
+  servlet:
+    context-path: /sentinel
+spring:
+  application:
+    name: sentinel-example
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848 #nacos作为服务注册的地址
+      config:
+        server-addr: 127.0.0.1:8848 #nacos作为配置中心的地址
+        file-extension: yaml #执行yaml格式的配置
+        #group: DEV_GROUP  #指定分组
+        #namespace: 99408715-b5ff-465e-865d-4b6e2c7e0245 #指定命名空间id
+    sentinel:
+      transport:
+        port: 8719   #默认8719，假如被占用会+1，直到找到未被占用
+        dashboard: localhost:8080  #配置sentinel地址
+#      datasource:   #配置持久化到nacos
+#        ds1:
+#          nacos:
+#            server-addr: localhost:8848
+#            data-id: sentinel-example
+#            group-id: DEFAULT_GROUP
+#            data-type: json
+#            rule-type: flow
+              #[
+              #    {
+              #        "resource":"/hello",
+              #        "limitApp":"default",
+              #        "grade":1,
+              #        "count":1,
+              #        "strategy":0,
+            #        "controlBehavior":0,
+            #        "clusterMode":false
+            #    }
+            #]
+  profiles:
+    active: dev  #指定环境
+feign:
+  sentinel:
+    enabled: true
+#{spring.application.name}-{spring.profiles.active}.{spring.cloud.nacos.config.file-extension}
