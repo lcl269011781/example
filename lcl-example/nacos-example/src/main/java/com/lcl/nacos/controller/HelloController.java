@@ -20,7 +20,8 @@ public class HelloController {
     private String configuration;
 
     @GetMapping("/nacos/hello")
-    public String hello(){
+    public String hello() throws InterruptedException {
+        Thread.sleep(10000);
         return configuration;
     }
 
