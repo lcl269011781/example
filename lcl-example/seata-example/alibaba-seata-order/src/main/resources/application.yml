@@ -1,0 +1,27 @@
+spring:
+  datasource:
+#    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 123456
+    url: jdbc:mysql://127.0.0.1:3306/seata_order?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8
+#    hikari: #数据源配置
+#      minimum-idle: 5
+#      idle-timeout: 600000
+#      maximum-pool-size: 10
+#      auto-commit: true
+#      pool-name: Order_HikariCP
+#      max-lifetime: 1800000
+#      connection-timeout: 30000
+#      connection-test-query: SELECT 1
+feign:
+  sentinel:
+    enabled: true
+  httpclient:
+    connection-timeout: 2000
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+logging:
+  level:
+    io.seata: info
+    com.alibaba.seata.order.dao: debug
