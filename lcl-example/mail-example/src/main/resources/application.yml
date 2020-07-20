@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: mail-example
+  mail:
+    host: smtp.qq.com #发送邮件服务器
+    username: 269011781@qq.com #QQ邮箱
+    password: gmmipvxivgulcaih #客户端授权码
+    protocol: smtp #发送邮件协议
+    properties:
+      mail:
+        smtp:
+          auth: true
+          port: 465
+          starttls:
+            enable: true
+            required: true
+          ssl:
+            enable: true
+        display:
+          sendmail: Javen
+          sendname: Spring Boot Guide Email
+    default-encoding: utf-8
+server:
+  port: 8080

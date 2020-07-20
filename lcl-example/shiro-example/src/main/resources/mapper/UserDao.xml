@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lcl.shiro.dao.UserDao">
+    <resultMap id="BASE_MAP" type="com.lcl.shiro.pojo.User">
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="is_lock" property="isLock"/>
+        <collection property="roles" column="id" select="com.lcl.shiro.dao.RoleDao.selectByUserId"/>
+    </resultMap>
+    <insert id="insert">
+        insert into user(username, password,is_lock) values (#{username},#{password},0)
+    </insert>
+    <insert id="insertUserRoleRel">
+        insert into user_role_rel(user_id, role_id) VALUES (#{userId},#{roleId})
+    </insert>
+    <select id="selectByUsername" resultMap="BASE_MAP">
+        select id, username, password,is_lock
+        from user
+    </select>
+</mapper>

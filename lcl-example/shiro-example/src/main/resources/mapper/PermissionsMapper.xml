@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lcl.shiro.dao.PermissionsDao">
+    <resultMap id="BASE_MAP" type="com.lcl.shiro.pojo.Permissions">
+        <id column="id" property="id"/>
+        <result column="name" property="permissionsName"/>
+    </resultMap>
+               
+    <select id="selectByRoleId" resultMap="BASE_MAP">
+        select p.id, p.name
+        from role_permiessions_rel rpr
+        left join permissions p on rpr.permissions_id = p.id
+        where rpr.role_id=#{roleId}
+    </select>
+</mapper>

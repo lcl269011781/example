@@ -1,0 +1,43 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: shiro-example
+  redis:
+    host: 192.168.189.4
+    password:
+    port: 6379
+    lettuce:
+      pool:
+        max-active: 5
+        min-idle: 20
+        max-idle: 100
+        max-wait: 5000
+    timeout: 30000
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/shiro?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password: 123456
+    hikari: #数据源配置
+      minimum-idle: 5
+      idle-timeout: 600000
+      maximum-pool-size: 10
+      auto-commit: true
+      pool-name: MyHikariCP
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.lcl.shiro.pojo
+#调试使用输出debug
+logging:
+  level:
+    com.lcl.shiro.dao: debug
+shiro:
+  enabled: true
+  loginUrl: /login
+  successUrl: /login
