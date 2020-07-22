@@ -1,0 +1,52 @@
+spring:
+  application:
+    name: kafka-example
+  kafka:
+    bootstrap-servers: 192.168.189.4:9092
+    producer:
+      retries: 0 #重试次数
+      acks: 1 #应答级别，可选(0 1 all/-1)
+      batch-size: 16384 #批量大小
+      properties:
+        linger:
+          ms: 0 #提交延迟
+          # 当生产端积累的消息达到batch-size或接收到消息linger.ms后,生产者就会将消息提交给kafka
+          # linger.ms为0表示每接收到一条消息就提交给kafka,这时候batch-size其实就没用了
+      buffer-memory: 33554432 #生产者缓冲区大小
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer  #序列化与反序列化类
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      # 当kafka中没有初始offset或offset超出范围时将自动重置offset
+      # earliest:重置为分区中最小的offset;
+      # latest:重置为分区中最新的offset(消费分区中新产生的数据);
+      # none:只要有一个分区不存在已提交的offset,就抛出异常;
+      auto-offset-reset: latest
+      properties:
+        session:
+          timeout:
+            ms: 12000 # 消费会话超时时间(超过这个时间consumer没有发送心跳,就会触发rebalance操作)
+        request:
+          timeout:
+            ms: 18000 # 消费请求超时时间
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+#      max-poll-records: 50 # 批量消费每次最多消费多少条消息
+    listener:
+      missing-topics-fatal: false # 消费端监听的topic不存在时，项目启动会报错(关掉)
+#      type: batch #设置批量消费  , 批量消费开启，消费者接受消息要改为LIST
+server:
+  port: 8080
+
+
+kafka:
+  topic:
+    test1:
+      group: topic1
+      name: TOPIC_TEST_1
+      partition: 1
+      replication: 1
+    test2:
+      group: topic2
+      name: TOPIC_TEST_2
+      partition: 1
+      replication: 1
