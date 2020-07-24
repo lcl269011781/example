@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lcl.distributedlock.dao.MysqlLockDao">
+    <insert id="insert">
+        insert into dlock (lock_name,val) values (#{lockName},#{val})
+    </insert>
+    <delete id="delete">
+        delete from dlock where lock_name=#{lockName} and val=#{val}
+    </delete>
+</mapper>
