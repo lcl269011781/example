@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: elasticsearch-example
+  elasticsearch:
+    rest:
+      uris: http://192.168.189.4:9200
