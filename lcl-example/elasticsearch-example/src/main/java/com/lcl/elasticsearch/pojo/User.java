@@ -12,10 +12,8 @@ import lombok.Data;
  **/
 @Data
 @AllArgsConstructor
-public class IkIndex {
+public class User {
     private Long id;
-    private String title;
-    private String desc;
-    private String category;
-
+    private String username;
+    private String password;
 }
