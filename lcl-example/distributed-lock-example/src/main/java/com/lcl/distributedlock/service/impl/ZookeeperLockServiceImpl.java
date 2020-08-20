@@ -20,46 +20,46 @@ import java.util.concurrent.TimeUnit;
 @Service
 @Slf4j
 public class ZookeeperLockServiceImpl implements ZookeeperLockService {
-    @Autowired
-    private ZookeeperLock zookeeperLock;
-
-    @Override
-    public void mutex() {
-        InterProcessMutex mutex = zookeeperLock.getMutex();
-        try {
-            if (zookeeperLock.tryLock(mutex, 10, TimeUnit.SECONDS)) {
-                log.info("===>>> 抢锁成功");
-                log.info("===>>> 执行业务逻辑");
-                Thread.sleep(5000);
-                log.info("===>>> 结束业务逻辑");
-            }
-        } catch (Exception e) {
-            log.error("", e);
-        } finally {
-            if (zookeeperLock.releaseLock(mutex)) {
-                log.info("===>>> 释放锁成功");
-            }
-        }
-
-    }
-
-    @Override
-    public void semaphoreMutex() {
-        InterProcessSemaphoreMutex semaphoreMutex = zookeeperLock.getSemaphoreMutex();
-        try {
-            if (zookeeperLock.tryLock(semaphoreMutex, 10, TimeUnit.SECONDS)) {
-                log.info("===>>> 抢锁成功");
-                log.info("===>>> 执行业务逻辑");
-                Thread.sleep(5000);
-                log.info("===>>> 结束业务逻辑");
-            }
-        } catch (Exception e) {
-            log.error("", e);
-        } finally {
-            if (zookeeperLock.releaseLock(semaphoreMutex)) {
-                log.info("===>>> 释放锁成功");
-            }
-        }
-
-    }
+//    @Autowired
+//    private ZookeeperLock zookeeperLock;
+//
+//    @Override
+//    public void mutex() {
+//        InterProcessMutex mutex = zookeeperLock.getMutex();
+//        try {
+//            if (zookeeperLock.tryLock(mutex, 10, TimeUnit.SECONDS)) {
+//                log.info("===>>> 抢锁成功");
+//                log.info("===>>> 执行业务逻辑");
+//                Thread.sleep(5000);
+//                log.info("===>>> 结束业务逻辑");
+//            }
+//        } catch (Exception e) {
+//            log.error("", e);
+//        } finally {
+//            if (zookeeperLock.releaseLock(mutex)) {
+//                log.info("===>>> 释放锁成功");
+//            }
+//        }
+//
+//    }
+//
+//    @Override
+//    public void semaphoreMutex() {
+//        InterProcessSemaphoreMutex semaphoreMutex = zookeeperLock.getSemaphoreMutex();
+//        try {
+//            if (zookeeperLock.tryLock(semaphoreMutex, 10, TimeUnit.SECONDS)) {
+//                log.info("===>>> 抢锁成功");
+//                log.info("===>>> 执行业务逻辑");
+//                Thread.sleep(5000);
+//                log.info("===>>> 结束业务逻辑");
+//            }
+//        } catch (Exception e) {
+//            log.error("", e);
+//        } finally {
+//            if (zookeeperLock.releaseLock(semaphoreMutex)) {
+//                log.info("===>>> 释放锁成功");
+//            }
+//        }
+//
+//    }
 }

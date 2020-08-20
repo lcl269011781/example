@@ -1,9 +1,9 @@
 package com.lcl.distributedlock.service;
 
 public interface ZookeeperLockService {
-
-    void mutex();
-
-    void semaphoreMutex();
+//
+//    void mutex();
+//
+//    void semaphoreMutex();
 
 }

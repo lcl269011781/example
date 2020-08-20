@@ -23,9 +23,9 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
  * @Date: 2020/7/1 8:45
  * 本人学识渊博、经验丰富，代码风骚、效率恐怖、无所不精、无所不通
  **/
-@Configuration
-@EnableCaching
-public class LettuceRedisConfig {
+//@Configuration
+//@EnableCaching
+//public class LettuceRedisConfig {
 //    @Autowired
 //    private RedisProperties redisProperties;
 //    @Value("${spring.redis.lettuce.pool.max-active}")
@@ -81,4 +81,4 @@ public class LettuceRedisConfig {
 //    }
 
 
-}
+//}

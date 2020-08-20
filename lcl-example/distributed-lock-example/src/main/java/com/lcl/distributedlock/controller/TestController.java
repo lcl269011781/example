@@ -52,14 +52,43 @@ public class TestController {
 
     @GetMapping("/redis")
     public ApiResult<String> redis() {
-        redisLockService.testredislock();
+        redisLockService.testRedissonTryLock();
         return ApiResult.of(ApiResult.ResultCode.OK, "请求成功", null);
+    }
+
+    @GetMapping("/redisReadLock")
+    public ApiResult<String> redisReadLock() {
+        return ApiResult.of(ApiResult.ResultCode.OK, "请求成功", redisLockService.testRedissonReadLock());
+    }
+
+    @GetMapping("/redisWriteLock")
+    public ApiResult<String> redisWriteLock() {
+        redisLockService.testRedissonWriteLock();
+        return ApiResult.of(ApiResult.ResultCode.OK, "请求成功", "成功");
+    }
+
+    @GetMapping("/redisSemaphore")
+    public ApiResult<String> redisSemaphore() {
+        redisLockService.testRedissonSemaphore();
+        return ApiResult.of(ApiResult.ResultCode.OK, "请求成功", "成功");
+    }
+
+    @GetMapping("/redisCountdownLatch")
+    public ApiResult<String> redisCountdownLatch() {
+        redisLockService.testRedissonCountdownLatch();
+        return ApiResult.of(ApiResult.ResultCode.OK, "请求成功", "成功");
+    }
+
+    @GetMapping("/redisCountdownLatch2")
+    public ApiResult<String> redisCountdownLatch2() {
+        redisLockService.testRedissonCountdownLatch2();
+        return ApiResult.of(ApiResult.ResultCode.OK, "请求成功", "成功");
     }
 
     @GetMapping("/zk")
     public ApiResult<String> zk() {
 //        zookeeperLockService.mutex();
-        zookeeperLockService.semaphoreMutex();
+//        zookeeperLockService.semaphoreMutex();
         return ApiResult.of(ApiResult.ResultCode.OK, "请求成功", null);
     }
 
