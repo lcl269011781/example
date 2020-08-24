@@ -1,0 +1,44 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: cache-example
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/cache_test?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password: 123456
+    hikari: #\u6570\u636E\u6E90\u914D\u7F6E
+      minimum-idle: 5
+      idle-timeout: 600000
+      maximum-pool-size: 10
+      auto-commit: true
+      pool-name: MyHikariCP
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+  redis:
+    host: 192.168.189.4
+    password:
+    port: 6379
+    lettuce:
+      pool:
+        max-active: 5
+        min-idle: 20
+        max-idle: 100
+        max-wait: 5000
+    timeout: 30000
+    #spring
+  cache:
+    type: redis
+    redis:
+      time-to-live: 600000
+      cache-null-values: true #缓存空数据防止穿透
+#      key-prefix: CACHE_
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.lcl.cache.pojo
+logging:
+  level:
+    com.lcl.cache.dao: debug

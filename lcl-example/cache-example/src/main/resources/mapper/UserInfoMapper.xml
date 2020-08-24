@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lcl.cache.dao.UserInfoDao">
+    <resultMap id="BASE_MAP" type="com.lcl.cache.pojo.UserInfo">
+        <id column="ID" property="id"/>
+        <result column="USERNAME" property="username"/>
+        <result column="PASSWORD" property="password"/>
+        <result column="OTHERS" property="others"/>
+    </resultMap>
+    <insert id="insert">
+        INSERT INTO userinfo (username, password, others)
+        VALUES (#{username}, #{password}, #{others})
+    </insert>
+    <select id="selectById" resultMap="BASE_MAP">
+        SELECT ID, USERNAME, PASSWORD, OTHERS
+        FROM userinfo
+        WHERE ID = #{id}
+    </select>
+    <select id="selectAll" resultMap="BASE_MAP">
+        SELECT ID, USERNAME, PASSWORD, OTHERS
+        FROM userinfo
+    </select>
+    <select id="selectByUsername" resultMap="BASE_MAP">
+        SELECT ID, USERNAME, PASSWORD, OTHERS
+        FROM userinfo
+        WHERE USERNAME = #{username}
+    </select>
+</mapper>
