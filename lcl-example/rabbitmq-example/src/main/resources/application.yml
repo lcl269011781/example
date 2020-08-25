@@ -1,0 +1,14 @@
+spring:
+  rabbitmq:
+    addresses: 192.168.189.4
+    port: 5672
+    virtual-host: /
+
+    publisher-confirm-type: simple  #指定发送端回调模式
+    publisher-returns: true  #是否返回
+    template:
+      mandatory: true
+
+    listener:
+      simple:
+        acknowledge-mode: manual #消费端自动回复设置为手动。
