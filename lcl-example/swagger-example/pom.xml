@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.lcl</groupId>
-    <artifactId>swagger-exapmle</artifactId>
+    <artifactId>swagger-example</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>swagger-exapmle</name>
     <description>集成swagger</description>
