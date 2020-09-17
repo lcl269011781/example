@@ -22,7 +22,7 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Resource
     UserInfoDao userInfoDao;
 
-    @Cacheable(value = {"test"},key = "#root.methodName")
+    @Cacheable(value = {"test"},key = "#id")
     @Override
     public UserInfo selectById(Long id) {
         return userInfoDao.selectById(id);
