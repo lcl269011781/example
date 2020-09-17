@@ -14,4 +14,6 @@ public interface UserInfoService {
 
     UserInfo selectByUsername(String username);
 
+    void update(UserInfo user);
+
 }

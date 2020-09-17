@@ -11,6 +11,13 @@
         INSERT INTO userinfo (username, password, others)
         VALUES (#{username}, #{password}, #{others})
     </insert>
+    <update id="update">
+        update userinfo
+        SET username=#{username},
+            password=#{password},
+            others=#{others}
+        where id = #{id}
+    </update>
     <select id="selectById" resultMap="BASE_MAP">
         SELECT ID, USERNAME, PASSWORD, OTHERS
         FROM userinfo

@@ -22,7 +22,7 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Resource
     UserInfoDao userInfoDao;
 
-    @Cacheable(value = {"test"},key = "#id")
+    @Cacheable(value = {"test"}, key = "#id")
     @Override
     public UserInfo selectById(Long id) {
         return userInfoDao.selectById(id);
@@ -33,12 +33,13 @@ public class UserInfoServiceImpl implements UserInfoService {
      * allEntries:test下的全部清除
      */
 //    @CacheEvict(value = {"test"},allEntries = true)
-    @CacheEvict(value = "test",allEntries = true)
+    @CacheEvict(value = "test", allEntries = true)
     @Override
     public void insert(UserInfo user) {
         userInfoDao.insert(user);
     }
-    @Cacheable(value = {"test"},key = "#root.methodName")
+
+    @Cacheable(value = {"test"}, key = "#root.methodName")
     @Override
     public List<UserInfo> selectAll() {
         return userInfoDao.selectAll();
@@ -47,5 +48,11 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Override
     public UserInfo selectByUsername(String username) {
         return userInfoDao.selectByUsername(username);
+    }
+
+    @CacheEvict(value = "test", key = "#user.id")
+    @Override
+    public void update(UserInfo user) {
+        userInfoDao.update(user);
     }
 }

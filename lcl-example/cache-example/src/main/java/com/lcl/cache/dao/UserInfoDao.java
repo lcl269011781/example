@@ -13,4 +13,6 @@ public interface UserInfoDao {
     List<UserInfo> selectAll();
 
     UserInfo selectByUsername(String username);
+
+    int update(UserInfo user);
 }
