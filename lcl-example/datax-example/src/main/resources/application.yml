@@ -1,7 +1,8 @@
 server:
   port: 8086
 threadpool:
-  easyexcel:
+  datax:
     corePoolSize: 10
     maximumPoolSize: 30
     queueSize: 150
+    keepAliveTime: 30

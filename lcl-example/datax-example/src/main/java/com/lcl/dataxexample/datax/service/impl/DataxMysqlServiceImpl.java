@@ -24,8 +24,10 @@ public class DataxMysqlServiceImpl implements DataxMysqlService {
     @Override
     public MysqlReader generaterReaderTemplate() {
         MysqlReaderConnection connection = new MysqlReaderConnection();
-        connection.getQuerySql().add("SELECT id,title,sell_point,price,num,barcode,image,cid,status,created,updated FROM tb_item");
-        connection.getJdbcUrl().add("jdbc:mysql:///ego?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8");
+        connection.getQuerySql().add("SELECT TABLE_CATALOG,TABLE_SCHEMA,TABLE_NAME,COLUMN_NAME,ORDINAL_POSITION,COLUMN_DEFAULT,IS_NULLABLE,DATA_TYPE,CHARACTER_MAXIMUM_LENGTH,CHARACTER_OCTET_LENGTH,\n" +
+                "NUMERIC_PRECISION,NUMERIC_SCALE,DATETIME_PRECISION,CHARACTER_SET_NAME,COLLATION_NAME,COLUMN_TYPE,COLUMN_KEY,EXTRA,PRIVILEGES,COLUMN_COMMENT,GENERATION_EXPRESSION,\n" +
+                "SRS_ID FROM COLUMNS");
+        connection.getJdbcUrl().add("jdbc:mysql:///information_schema?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8");
 
         MysqlReaderParameter parameter = new MysqlReaderParameter();
         parameter.setUsername("root");
@@ -41,14 +43,14 @@ public class DataxMysqlServiceImpl implements DataxMysqlService {
     public MysqlWriter generaterWriterTemplate() {
         MysqlWriterConnection connection = new MysqlWriterConnection();
         connection.setJdbcUrl("jdbc:mysql:///datax?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8");
-        connection.getTable().add("tb_item");
+        connection.getTable().add("columns");
 
         MysqlWriterParameter parameter = new MysqlWriterParameter();
         parameter.setUsername("root");
         parameter.setPassword("123456");
-        parameter.setColumn(Arrays.asList("id,title,sell_point,price,num,barcode,image,cid,status,created,updated".split(",")));
+        parameter.setColumn(Arrays.asList("TABLE_CATALOG,TABLE_SCHEMA,TABLE_NAME,COLUMN_NAME,ORDINAL_POSITION,COLUMN_DEFAULT,IS_NULLABLE,DATA_TYPE,CHARACTER_MAXIMUM_LENGTH,CHARACTER_OCTET_LENGTH, NUMERIC_PRECISION,NUMERIC_SCALE,DATETIME_PRECISION,CHARACTER_SET_NAME,COLLATION_NAME,COLUMN_TYPE,COLUMN_KEY,EXTRA,PRIVILEGES,COLUMN_COMMENT,GENERATION_EXPRESSION, SRS_ID".split(",")));
         parameter.setPostSql(null);
-        parameter.setPreSql(Collections.singletonList("delete from tb_item"));
+        parameter.setPreSql(Collections.singletonList("delete from columns"));
         parameter.setWriteMode("insert");
         parameter.setSession(null);
         parameter.getConnection().add(connection);
