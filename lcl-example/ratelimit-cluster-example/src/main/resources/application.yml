@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: ratelimit-cluster-example
+  redis:
+    host: 192.168.189.4
+    password:
+    port: 6379
+    lettuce:
+      pool:
+        max-active: 5
+        min-idle: 20
+        max-idle: 100
+        max-wait: 5000
+    timeout: 30000
