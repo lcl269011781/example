@@ -3,10 +3,6 @@ package com.lcl.practice.stream;
 import com.lcl.practice.pojo.User;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Description： 流式编程测试
@@ -17,21 +13,27 @@ public class Java8StreamTest {
 
     public static void main(String[] args) {
 
-        User user1 = new User(1, "zhangsan", "123456");
-        User user2 = new User(2, "lisi", "123456");
-        User user3 = new User(3, "wangwu", "123456");
+        boolean flag = true;
 
-        List<User> list = Arrays.asList(user1, user2, user3);
-        //filter 过滤
-//        list.stream().filter(user -> user.getId() % 2 == 0).forEach(System.out::println);
-        //map 映射,返回一个新的stream， collect 将stream转化成list以及其他类型
-//        list = list.stream().map(user -> user.setId(user.getId() * 2)).collect(Collectors.toList());
-        //sorted 排序
-//        list = list.stream().sorted((o1, o2) -> o2.getId() - o1.getId()).collect(Collectors.toList());
+        User user1 = new User(1, "1", "1", false);
+        User user2 = new User(2, "2", "2", false);
+        User user3 = new User(3, "3", "3", false);
+        User user4 = new User(4, "4", "4", false);
 
-        list = list.stream().limit(1).collect(Collectors.toList());
+        ArrayList<User> list = new ArrayList<>();
+        list.add(user1);
+        list.add(user2);
+        list.add(user3);
+        list.add(user4);
 
-        System.out.println(list);
+        if (list.parallelStream().anyMatch(user -> {
+            System.out.println(user);
+            return flag == user.getBoo();
+        })) {
+            System.out.println("==");
+        }else{
+            System.out.println("==2");
+        }
 
     }
 

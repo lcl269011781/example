@@ -3,7 +3,6 @@ package com.lcl.practice.pojo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 import lombok.experimental.Accessors;
 
 /**
@@ -21,6 +20,6 @@ public class User {
     private int id;
     private String username;
     private String password;
-
+    private Boolean boo;
 
 }

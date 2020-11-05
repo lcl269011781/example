@@ -1,10 +1,10 @@
 package com.lcl.cache.controller;
 
-import com.alibaba.fastjson.JSONObject;
 import com.lcl.cache.pojo.UserInfo;
 import com.lcl.cache.service.UserInfoService;
 import com.lcl.cache.util.ApiResult;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,10 +17,11 @@ import java.util.List;
  **/
 @RestController
 @RequestMapping("/userinfo")
-@Slf4j
 public class UserInfoController {
     @Autowired
     UserInfoService userInfoService;
+
+    private static final Logger log = LoggerFactory.getLogger(UserInfoController.class);
 
     @PostMapping("/add")
     public ApiResult<String> add(UserInfo userInfo) {
