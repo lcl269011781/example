@@ -33,6 +33,7 @@
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
+            <version>42.2.8</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
